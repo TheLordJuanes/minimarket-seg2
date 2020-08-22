@@ -122,4 +122,8 @@ class MinimarketTest {
 			lge.printStackTrace();
 		}
 	}
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> Errores corregidos en el diseño de los escenarios y casos de prueba
