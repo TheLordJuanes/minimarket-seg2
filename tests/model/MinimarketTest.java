@@ -70,14 +70,14 @@ class MinimarketTest {
 
 		// The person can be successfully registered having an odd ID number (penultimate) and being an even day:
 
-		setupStage1();
+		setupStage2();
 		typeDocument = "CC";
 		id = "281937456";
 		currentDay = 4;
 		try {
 			newMinimarket.registPerson(typeDocument, id, currentDay);
-			assertEquals(1, newMinimarket.getPeople().size(), "The person was not registered correctly.");
-			assertEquals(1, newMinimarket.getPeopleWhoTried(), "The attempt was not registered.");
+			assertEquals(2, newMinimarket.getPeople().size(), "The person was not registered correctly.");
+			assertEquals(2, newMinimarket.getPeopleWhoTried(), "The attempt was not registered.");
 		} catch (NotLegalAgeException nlae) {
 			fail("NotLegalAgeException not expected.");
 		} catch (LocalGovernmentException lge) {
@@ -91,7 +91,7 @@ class MinimarketTest {
 		setupStage1();
 		typeDocument = "CE";
 		id = "737608165";
-		currentDay = 4;
+		currentDay = 8;
 		try {
 			newMinimarket.registPerson(typeDocument, id, currentDay);
 			fail("LocalGovernmentException is expected.");
@@ -108,7 +108,7 @@ class MinimarketTest {
 		// The person can't be correctly registered because he/she has an odd ID number (penultimate) and it's an odd day:
 
 		setupStage1();
-		typeDocument = "CE";
+		typeDocument = "PP";
 		id = "469074512";
 		currentDay = 19;
 		try {
@@ -121,21 +121,5 @@ class MinimarketTest {
 			assertEquals(1, newMinimarket.getPeopleWhoTried(), "The attempt was not registered.");
 			lge.printStackTrace();
 		}
-	}
-
-	@Test
-	public void testSearchPerson() {
-
-		setupStage2();
-		id = "613265789";
-		Person objsearch = newMinimarket.searchPerson(id);
-		assertNotNull(objsearch);
-
-		/*--------------------------------------------------*/
-
-		setupStage2();
-		id = "551233598";
-		Person obj = newMinimarket.searchPerson(id);
-		assertNull(obj);
 	}
 }
